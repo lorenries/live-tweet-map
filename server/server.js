@@ -1,7 +1,5 @@
 // server.js
-// where your node app starts
 
-// init project
 var express = require('express');
 var Twit = require('twit');
 var app = express();
@@ -32,13 +30,13 @@ io.on('connection', function(socket) {
 
   stream.on('tweet', function(tweet) {
     if (tweet.geo) {
-      var package = {
+      var tweetPackage = {
         text: tweet.text,
         followers: tweet.user.followers_count,
         geo: tweet.geo,
         coordinates: tweet.coordinates
       };
-      socket.volatile.emit('tweet', package);
+      socket.volatile.emit('tweet', tweetPackage);
     }
   });
 
@@ -49,15 +47,4 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     stream.stop();
   });
-});
-
-// we've started you off with Express,
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('client/public'));
-
-// // http://expressjs.com/en/starter/basic-routing.html
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + 'client/public/index.html');
 });
