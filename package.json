@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "nodemon server.js",
+    "server": "nodemon server/server.js",
     "dev":
-      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "deploy": "cd client && npm run build && netlifyctl deploy -P ./build"
   },
   "author": "lries",
   "license": "MIT",

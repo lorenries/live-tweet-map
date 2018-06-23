@@ -43,7 +43,13 @@ class App extends React.Component {
   _onViewportChange = viewport => this.setState({ viewport });
 
   getTweets = () => {
-    const socket = io.connect('http://localhost:8080/');
+    const socket = io.connect(
+      `${
+        process.env.NODE_ENV === 'production'
+          ? 'https://zesty-teeth.glitch.me/'
+          : 'http://localhost:8080'
+      }`
+    );
     const tweets = { ...this.state.tweets };
     let that = this;
     let tweetId = 0;

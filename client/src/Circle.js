@@ -10,7 +10,6 @@ class CircleOverlay extends BaseControl {
 
       return (
       	<svg width={viewport.width} height={viewport.height} style={`pointerEvents: 'all', position: 'absolute', left: 0, top: 0, cursor: ${isDragging ? '-webkit-grabbing' : '-webkit-grab'}`}>
-      		
       	</svg>
       );
 }
